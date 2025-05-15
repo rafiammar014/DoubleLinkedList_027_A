@@ -81,3 +81,122 @@ class doubleLinkedList
 
         current->next = newNode; // step 9d
 }
+
+void hapus()
+{
+    if (START == NULL)
+    {
+        cout << "\nList is empty" << endl;
+        return;
+    }
+    
+    cout << "\nEnter the roll of the student whose record is to be deleted: ";
+    int rollNo;
+    cin >> rollNo;
+
+    Node *current = START;
+
+    // Step 1: Traverse the list to find the node 
+    while (current != NULL && current->nomMhs != rollNo)
+        current = current->next;
+
+        if (current == NULL)
+        {
+            cout << "\nRecord not found" << endl;
+            return;
+        }
+
+        // Step 2 : If node is at the beginning
+        if (current == START)
+        {
+            START = current->next; // Step 2a: START = START.next 
+            if (START != NULL)
+                START->prev = NULL; // Step 2b: START.prev = NULL
+        }
+        else
+        {
+            // Step 3: link preveious node to next of current 
+            current->prev->next = current->next;
+
+            // Step 4: If current is not the last node
+            if (current->next != NULL)
+                current->next->prev = current->prev;
+        }
+
+        // Step 5: Delete the node 
+        delete current;
+        cout << "Record with roll number " << rollNo << " deleted" << endl;
+}
+
+void traverse ()
+{
+    if (START == NULL)
+    {
+        cout << "\nList is empty" << endl;
+        return;
+    }
+
+    // Step 1: Mark first node as currentNode 
+    Node *currentNode = START;
+
+    // Step 2: Repeat until currentNode == NULL
+    cout << "\nRecords in asecending order of roll number are:\n";
+    int i = 0 ;
+    while (currentNode != NULL)
+    {
+
+      cout << i + 1 << ". " << currentNode->nomMhs << " " << endl;
+
+      // Step 3: Move to next node
+      currentNode = currentNode->next;
+      i ++;
+    }
+}
+
+void revtraverse ()
+{
+    if (START == NULL)
+    {
+        cout << "\nList is empty" << endl;
+        return;
+    }
+
+    // Step 1: Move to last node
+    Node *currentNode = START;
+    int i + 1;
+    while (currentNode->next != NULL)
+    {
+        currentNode = currentNode->next;
+        i++;
+    }
+
+    // Step 2: Traverse backward
+    cout << "\nRecords in descending order of roll number are:\n";
+    while (currentNode != NULL)
+    {
+        cout << i << ". " << currentNode->nomMhs << " " << endl;
+
+        // Step 3: Move to previous node
+        currentNode = currentNode->prev;
+        i--;
+    }
+}
+
+void searchData()
+{
+    If (START == NULL)
+    {
+        cout << "\nList is empty" << endl;
+        return;
+    }
+
+    int rollNo;
+    cout << "\nEnter the roll number of the student to search: ";
+    cin >> rollNo;  
+
+    Node *current = START;
+    
+    // Step 1: Traverse to find matching roll number 
+    while (Current != NULL && current->nomMhs != rollNo)
+        current = current->next;
+}
